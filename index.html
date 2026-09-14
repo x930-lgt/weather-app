@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./src/style.css">
+  <title>天気アプリ</title>
+  <script type="module" src="src/main.ts"></script>
+
+</head>
+
+<body>
+
+
+  <div id="weatherAPP">
+    <h1>天気情報アプリ</h1>
+    <input id="cityInput" type="text" placeholder="都市名を入力">
+    <button id="buttonSearch">検索</button>
+
+    <p id="status"></p>
+
+    <div id="result" style="display:none;">
+      <h2 id="cityName"></h2>
+      <p id="weather"></p>
+      <p id="temperature"></p>
+      <p id="windspeed"></p>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
