@@ -7,7 +7,6 @@ afterEach(() => {
 
 describe('getCoordinatesのテスト', () => {
     it("都市名から緯度・経度を取得できる", async () => {
-
         vi.stubGlobal(
             "fetch",
             vi.fn().mockResolvedValue({
@@ -29,11 +28,9 @@ describe('getCoordinatesのテスト', () => {
         expect(result.name).toBe("Osaka");
         expect(result.latitude).toBe(12.345);
         expect(result.longitude).toBe(678.910);
-
     });
 
     it("存在しない都市名の場合はエラーになる", async () => {
-
         vi.stubGlobal(
             "fetch",
             vi.fn().mockResolvedValue({
@@ -50,11 +47,8 @@ describe('getCoordinatesのテスト', () => {
     });
 });
 
-
-
 describe('getWeatherのテスト', () => {
     it("緯度・経度から天気情報を取得できる", async () => {
-
         vi.stubGlobal(
             "fetch",
             vi.fn().mockResolvedValue({
@@ -64,7 +58,6 @@ describe('getWeatherのテスト', () => {
                         temperature_2m: 25,
                         weather_code: 3,
                         wind_speed_10m: 3
-
                     }
                 })
             })
@@ -78,7 +71,6 @@ describe('getWeatherのテスト', () => {
     });
 
     it("天気情報の取得に失敗した場合はエラーになる", async () => {
-
         vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
             ok: false
         }));
@@ -87,6 +79,4 @@ describe('getWeatherのテスト', () => {
             "天気情報の取得に失敗しました"
         );
     });
-
-
 });
