@@ -2,15 +2,12 @@ import { getCoordinates, getWeather } from "./weatherApi";
 
 const cityInput = document.getElementById("cityInput") as HTMLInputElement;
 const buttonSearch = document.getElementById("buttonSearch") as HTMLButtonElement;
-const statusEL = document.getElementById("status");
-const resultEL = document.getElementById("result");
-const cityNameEL = document.getElementById("cityName");
-const weatherEL = document.getElementById("weather");
+const statusEl = document.getElementById("status");
+const resultEl = document.getElementById("result");
+const cityNameEl = document.getElementById("cityName");
+const weatherEl = document.getElementById("weather");
 const temperatureEl = document.getElementById("temperature");
 const windspeedEl = document.getElementById("windspeed");
-
-
-
 
 /**
  * 天気コードを天気の説明文に変換する
@@ -57,9 +54,9 @@ async function searchWeather() {
     location.longitude
   );
 
-  resultEL!.style.display = "block";
-  cityNameEL!.textContent = location.name;
-  weatherEL!.textContent = weatherDescriptions[weather.weatherCode] ?? "天気情報なし";
+  resultEl!.style.display = "block";
+  cityNameEl!.textContent = location.name;
+  weatherEl!.textContent = weatherDescriptions[weather.weatherCode] ?? "天気情報なし";
   temperatureEl!.textContent = weather.temperature;
   windspeedEl!.textContent = weather.windSpeed;
 }
@@ -70,30 +67,30 @@ async function searchWeather() {
  * 検索中はボタンを無効化し、検索完了後に再度有効化する
  */
 async function handleSearch() {
-  statusEL!.textContent = "取得中...";
-  statusEL!.style.color = "gray";
-  resultEL!.style.display = "none";
-  buttonSearch!.disabled = true;
+  statusEl!.textContent = "取得中...";
+  statusEl!.style.color = "gray";
+  resultEl!.style.display = "none";
+  buttonSearch.disabled = true;
 
   try {
     await searchWeather();
     // 検索成功
-    statusEL!.textContent = "取得完了！";
-    statusEL!.style.color = "green";
+    statusEl!.textContent = "取得完了！";
+    statusEl!.style.color = "green";
 
   } catch (error) {
 
-    statusEL!.textContent =
+    statusEl!.textContent =
       error instanceof Error ? error.message : "エラーが発生しました";
-    statusEL!.style.color = "red";
-    resultEL!.style.display = "none";
+    statusEl!.style.color = "red";
+    resultEl!.style.display = "none";
   } finally {
-    buttonSearch!.disabled = false;
+    buttonSearch.disabled = false;
   }
 
 }
 // 検索ボタンのクリックで天気検索を実行
-buttonSearch?.addEventListener("click", handleSearch);
+buttonSearch.addEventListener("click", handleSearch);
 
 // Enterキーでも天気検索を実行
 cityInput.addEventListener("keydown", function (e) {
